@@ -2,5 +2,5 @@
 
 <!--lint disable no-multiple-toplevel-headings -->
 
-0.0.0 / 2015-12-30
+1.0.0 / 2015-12-31
 ==================
