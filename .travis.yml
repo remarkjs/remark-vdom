@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- '0.10'
+- '0.11'
+- '0.12'
+- '4.0'
+- '5.0'
+- iojs
+after_script: npm install codecov.io && cat ./coverage/lcov.info | codecov
+deploy:
+  provider: releases
+  api_key:
+    secure: EDqVUlbHZpHeJLsH60Nl/vFTi3FAH4lEZXMRBEiNiKAQg0wnDfxDExvTzQzfNj/1vdhJYUnNV/TbOghZLLUJooXbC2DsNC2TP5deWBK64YgdknYxlEHqikJowUviFF9+U0K/ramIHRXKvi7cc3jQM1S6HpQuQ1OFfKSJICoVdrL87t3BoLigRRf7x1bjAop40PO411GXGjzFHJfs+QqsMzD0uikN1l78knQdicvl16AfJDU1AOogsQlZ9VevN7O78pvLX/CxTE3dy1I3wya6hVWvuIrOSQZqxi1t9cS0nwr7+zX70W+xWSSCzOgOqKcSRjrKYvMfQnY7N6pfX2APSqMBhhUmzGHw+xcZZkaJ4OTroiquOOFKa7pZ+ph2ipwymeHPtCx1FSUXJybIGOAHycNSezNE5Cn3/PSAjF9v5Yl1t/x70a+WRWZubf64u6CdFrvb5BuYedpkdPWiPS+QHFJJGEnDPMTVIO3wpMtq5MONVUEq8DGeJ4uPO7yOZeau3mGqZIVOoOspgyusX3JcL8cc+2jPD2FLhrjZihjLuxBWil8+Ka3sNAkDzjlzVD2LX0OMUajCyxnIAUjq7j+vejuvDcKWBfinRoQ0bZI0L8O7OJ/EK9B8pZI/kj98nhWcRWPfpt0cWQz/ujEB759h7bC4jJhGljd51CON/bKHmdg=
+  file:
+    - "remark-vdom.js"
+    - "remark-vdom.min.js"
+  on:
+    tags: true

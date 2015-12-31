@@ -1,0 +1,34 @@
+{
+  "name": "remark-vdom",
+  "version": "0.0.0",
+  "description": "Compile Markdown to VDOM with remark",
+  "license": "MIT",
+  "keywords": [
+    "markdown",
+    "html",
+    "vdom",
+    "virtual",
+    "hyperscript",
+    "dom",
+    "stringify",
+    "compile",
+    "remark"
+  ],
+  "dependencies": {
+    "wooorm/collapse-white-space": "^1.0.0",
+    "wooorm/detab": "^1.0.0",
+    "wooorm/normalize-uri": "^1.0.0",
+    "sindresorhus/object-assign": "^4.0.1",
+    "blakeembrey/param-case": "^1.1.2",
+    "wooorm/property-information": "^2.0.0",
+    "component/trim": "^0.0.1",
+    "wooorm/trim-lines": "^1.0.0",
+    "wooorm/unist-util-visit": "^1.0.0",
+    "Raynos/virtual-dom": "^2.1.1"
+  },
+  "repository": "wooorm/remark-vdom",
+  "scripts": [
+    "index.js",
+    "lib/"
+  ]
+}

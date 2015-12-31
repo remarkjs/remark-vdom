@@ -1,0 +1,15 @@
+{
+  "output": true,
+  "plugins": [
+    "lint",
+    "github",
+    "toc",
+    "comment-config",
+    "usage",
+    "validate-links",
+    "remark-license"
+  ],
+  "settings": {
+    "bullet": "*"
+  }
+}
