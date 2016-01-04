@@ -104,8 +104,7 @@ Yields (note it’s an array of nodes):
     hasWidgets: false,
     hasThunks: false,
     hooks: undefined,
-    descendantHooks: false },
-  VirtualText { text: '\n' } ]
+    descendantHooks: false } ]
 ```
 
 ## API

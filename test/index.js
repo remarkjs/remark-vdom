@@ -210,7 +210,7 @@ test('remark-html()', function (t) {
 
     t.equal(
         wrap(processor.process('![hello](example.jpg "overwritten")')),
-        '<p><img src="example.jpg" alt="hello" title="overwrite"></p>\n',
+        '<p><img src="example.jpg" alt="hello" title="overwrite"></p>',
         'should patch and merge attributes'
     );
 
@@ -226,7 +226,7 @@ test('remark-html()', function (t) {
 
     t.equal(
         wrap(processor.process('**Bold!**')),
-        '<p><b>Bold!</b></p>\n',
+        '<p><b>Bold!</b></p>',
         'should overwrite a tag-name'
     );
 
@@ -243,8 +243,8 @@ test('remark-html()', function (t) {
         .use(vdom);
 
     t.equal(
-        wrap(processor.process('```js\nvar\n```\n')),
-        '<pre><code class="foo language-js">var\n</code></pre>\n',
+        wrap(processor.process('```js\nvar\n```')),
+        '<pre><code class="foo language-js">var\n</code></pre>',
         'should NOT overwrite classes on code'
     );
 
@@ -362,7 +362,7 @@ test('Fixtures', function (t) {
         file.contents = input;
 
         config = exists(config) ? JSON.parse(read(config, 'utf-8')) : {};
-        result = wrap(process(file, config));
+        result = wrap(process(file, config)) + '\n';
 
         t.equal(result, output, 'should work on `' + fixture + '`');
     });
@@ -385,7 +385,7 @@ test('CommonMark', function (t) {
         var err;
 
         file.contents = test.markdown;
-        result = wrap(process(file, CMARK_OPTIONS));
+        result = wrap(process(file, CMARK_OPTIONS)) + '\n';
 
         n = n + 1;
 
@@ -432,7 +432,11 @@ test('Integrations', function (t) {
             .use(INTEGRATION_MAP[integration], config)
             .process(file, config);
 
-        t.equal(wrap(result), output, 'should work on `' + integration + '`');
+        t.equal(
+            wrap(result) + '\n',
+            output,
+            'should work on `' + integration + '`'
+        );
     });
 
     t.end();
