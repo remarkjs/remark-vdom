@@ -28,9 +28,8 @@ node, for rendering by virtual-dom.
 npm install remark-vdom
 ```
 
-**remark-vdom** is also available for [duo](http://duojs.org/#getting-started),
-and as an AMD, CommonJS, and globals module, [uncompressed and
-compressed](https://github.com/wooorm/remark-vdom/releases).
+**remark-vdom** is also available as an AMD, CommonJS, and globals
+module, [uncompressed and compressed](https://github.com/wooorm/remark-vdom/releases).
 
 ## Table of Contents
 
@@ -60,7 +59,7 @@ Yields (note it’s an array of nodes):
 [ VirtualNode {
     tagName: 'P',
     properties: {},
-    children: 
+    children:
      [ VirtualText { text: 'Some ' },
        VirtualNode {
          tagName: 'EM',
