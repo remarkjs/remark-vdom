@@ -292,7 +292,7 @@ test('remark-html()', function (t) {
     t.equal(
         wrap(processor.stringify({
             'type': 'link',
-            'href': 'file.mp3',
+            'url': 'file.mp3',
             'data': {
                 'htmlAttributes': {
                     'download': true
@@ -310,7 +310,7 @@ test('remark-html()', function (t) {
     t.equal(
         wrap(processor.stringify({
             'type': 'link',
-            'href': 'file.mp3',
+            'url': 'file.mp3',
             'data': {
                 'htmlAttributes': {
                     'download': false
@@ -328,7 +328,7 @@ test('remark-html()', function (t) {
     t.equal(
         wrap(processor.stringify({
             'type': 'link',
-            'href': 'file.mp3',
+            'url': 'file.mp3',
             'data': {
                 'htmlAttributes': {
                     'download': 'song.mp3'
