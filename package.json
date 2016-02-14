@@ -26,8 +26,15 @@
     "unist-util-visit": "^1.0.0",
     "virtual-dom": "^2.1.1"
   },
-  "repository": "wooorm/remark-vdom",
-  "author": "Titus Wormer <tituswormer@gmail.com> (wooorm.com)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/remark-vdom.git"
+  },
+  "bugs": "https://github.com/wooorm/remark-vdom/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
   "files": [
     "index.js",
     "lib/"
