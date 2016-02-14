@@ -8,14 +8,14 @@ parser.
 
 *   [x] Supports footnotes, todo lists;
 
-*   [ ] Future: support VNode [keys][vnode-key].
+*   [ ] Future: support VNode [keys][vnode-key];
 
 *   [ ] Future: allow custom components to overwrite default elements, e.g.,
-    `MyLink` instead of `<a>`.
+    `MyLink` instead of `<a>`;
 
-*   [ ] Future: Expose as [widget][widget]
+*   [ ] Future: Expose as [widget][].
 
-Note: **remark-vdom** exposes an array of [VNode][vnode]s. You will
+Note: **remark-vdom** exposes an array of [VNode][]s. You will
 probably need to wrap the result in, for example, an `article` node,
 for rendering by virtual-dom.
 
@@ -46,7 +46,7 @@ Yields (note it’s an array of nodes):
 [ VirtualNode {
     tagName: 'P',
     properties: {},
-    children: 
+    children:
      [ VirtualText { text: 'Some ' },
        VirtualNode {
          tagName: 'EM',
@@ -133,6 +133,32 @@ For example, the following node:
 ```markdown
 <i id="foo">baz</i>
 ```
+
+<!-- Definitions -->
+
+[travis-badge]: https://img.shields.io/travis/wooorm/remark-vdom/master.svg
+
+[travis]: https://travis-ci.org/wooorm/remark-vdom
+
+[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/remark-vdom.svg
+
+[codecov]: https://codecov.io/github/wooorm/remark-vdom
+
+[npm-install]: https://docs.npmjs.com/cli/install
+
+[releases]: https://github.com/wooorm/remark-vdom/releases
+
+[remark]: https://github.com/wooorm/remark
+
+[mdast]: https://github.com/wooorm/mdast
+
+[vdom]: https://github.com/Matt-Esch/virtual-dom
+
+[vnode-key]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
+
+[widget]: https://github.com/Matt-Esch/virtual-dom/blob/903d884a8e4f05f303ec6f2b920a3b5237cf8b92/docs/widget.md
+
+[vnode]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript
 
 ## License
 
