@@ -46,7 +46,7 @@ Yields (note it’s an array of nodes):
 [ VirtualNode {
     tagName: 'P',
     properties: {},
-    children:
+    children: 
      [ VirtualText { text: 'Some ' },
        VirtualNode {
          tagName: 'EM',
