@@ -6,13 +6,21 @@ node_js:
 - '4.0'
 - '5.0'
 - iojs
+sudo: false
 after_script: npm install codecov.io && cat ./coverage/lcov.info | codecov
 deploy:
-  provider: releases
-  api_key:
-    secure: EDqVUlbHZpHeJLsH60Nl/vFTi3FAH4lEZXMRBEiNiKAQg0wnDfxDExvTzQzfNj/1vdhJYUnNV/TbOghZLLUJooXbC2DsNC2TP5deWBK64YgdknYxlEHqikJowUviFF9+U0K/ramIHRXKvi7cc3jQM1S6HpQuQ1OFfKSJICoVdrL87t3BoLigRRf7x1bjAop40PO411GXGjzFHJfs+QqsMzD0uikN1l78knQdicvl16AfJDU1AOogsQlZ9VevN7O78pvLX/CxTE3dy1I3wya6hVWvuIrOSQZqxi1t9cS0nwr7+zX70W+xWSSCzOgOqKcSRjrKYvMfQnY7N6pfX2APSqMBhhUmzGHw+xcZZkaJ4OTroiquOOFKa7pZ+ph2ipwymeHPtCx1FSUXJybIGOAHycNSezNE5Cn3/PSAjF9v5Yl1t/x70a+WRWZubf64u6CdFrvb5BuYedpkdPWiPS+QHFJJGEnDPMTVIO3wpMtq5MONVUEq8DGeJ4uPO7yOZeau3mGqZIVOoOspgyusX3JcL8cc+2jPD2FLhrjZihjLuxBWil8+Ka3sNAkDzjlzVD2LX0OMUajCyxnIAUjq7j+vejuvDcKWBfinRoQ0bZI0L8O7OJ/EK9B8pZI/kj98nhWcRWPfpt0cWQz/ujEB759h7bC4jJhGljd51CON/bKHmdg=
-  file:
-    - "remark-vdom.js"
-    - "remark-vdom.min.js"
-  on:
-    tags: true
+  - provider: npm
+    email: tituswormer@gmail.com
+    api_key:
+      secure: k8wpl1GTRc7IcP0bYUzZbGbzocKYGL81HpV/HzJCFxRa5Ovc7xkvirVUjn/shXx/hrRiUPKJg07pvQEx1/y1uLw0k9EOP3PSYoubhV8ZzB8aMJ7vxa7Ud8liBZAc5bL+MKjsBUtHbqzBFXdIBsaFIycO57QMY3ceXmbk/EQTQYA5KwAyL4cgrGWa3h3nQitKT+Dg5GE9Y/seKa6b+b9AeqrlQg4GuA5fWbHf4vLmQBodrCdBgPWLiHL50aJ9qOwFoITNm9bxt9XIcerR43+UJnDTLbYvRs63KTx3UcEEKzfYlogeCGo++On+CO83w+hUfW2Sp0NYvLQEHPPs3gGK0bbhlXW1CYyw462L3tTnTTGv33+ZVTrxv/CrR2v/T6PLYwm0lvqIgo7qcOfEwTEGGgWVuSU0tM1C4GY8Yy1wYnWV66N//bJVEs+G1oT2Icy37amGx2OEmUypOcSZX7eEbsTf5Pnr521pEZWIlCpptSzQmRx1ezqpeAHJUmArGiAGmRKl8F9bmg/VmxUWakzbC6m6sIbo8txqdlP+mzmfKcbgZK6fxVuRbi9cZG1XwB/I3Bz5Z+66l14+uJijdq+NlmC86fY09GMcUzTspC5/AdQ/KDhR94pKsuiFIrU+s19zgc3sZOt2fIZ1va+dHw9kOq+C9bM8PRg936Ysx8v/SlU=
+    on:
+      tags: true
+      node: '5.0'
+  - provider: releases
+    api_key:
+      secure: EDqVUlbHZpHeJLsH60Nl/vFTi3FAH4lEZXMRBEiNiKAQg0wnDfxDExvTzQzfNj/1vdhJYUnNV/TbOghZLLUJooXbC2DsNC2TP5deWBK64YgdknYxlEHqikJowUviFF9+U0K/ramIHRXKvi7cc3jQM1S6HpQuQ1OFfKSJICoVdrL87t3BoLigRRf7x1bjAop40PO411GXGjzFHJfs+QqsMzD0uikN1l78knQdicvl16AfJDU1AOogsQlZ9VevN7O78pvLX/CxTE3dy1I3wya6hVWvuIrOSQZqxi1t9cS0nwr7+zX70W+xWSSCzOgOqKcSRjrKYvMfQnY7N6pfX2APSqMBhhUmzGHw+xcZZkaJ4OTroiquOOFKa7pZ+ph2ipwymeHPtCx1FSUXJybIGOAHycNSezNE5Cn3/PSAjF9v5Yl1t/x70a+WRWZubf64u6CdFrvb5BuYedpkdPWiPS+QHFJJGEnDPMTVIO3wpMtq5MONVUEq8DGeJ4uPO7yOZeau3mGqZIVOoOspgyusX3JcL8cc+2jPD2FLhrjZihjLuxBWil8+Ka3sNAkDzjlzVD2LX0OMUajCyxnIAUjq7j+vejuvDcKWBfinRoQ0bZI0L8O7OJ/EK9B8pZI/kj98nhWcRWPfpt0cWQz/ujEB759h7bC4jJhGljd51CON/bKHmdg=
+    file:
+      - "remark-vdom.js"
+      - "remark-vdom.min.js"
+    on:
+      tags: true
