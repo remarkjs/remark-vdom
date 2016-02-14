@@ -1,47 +1,34 @@
-# remark-vdom [![Build Status](https://img.shields.io/travis/wooorm/remark-vdom.svg)](https://travis-ci.org/wooorm/remark-vdom) [![Coverage Status](https://img.shields.io/codecov/c/github/wooorm/remark-vdom.svg)](https://codecov.io/github/wooorm/remark-vdom)
+# remark-vdom [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
-**remark-vdom** compiles markdown to
-[Virtual DOM](https://github.com/Matt-Esch/virtual-dom/). Built on [**remark**](https://github.com/wooorm/remark),
-an extensively tested and pluggable markdown parser.
+**remark-vdom** compiles markdown to [Virtual DOM][vdom]. Built on
+[**remark**][remark], an extensively tested and pluggable markdown
+parser.
 
 *   [x] Inherently safe and sanitized: there is no way to pass raw HTML through.
 
 *   [x] Supports footnotes, todo lists;
 
-*   [ ] Future: support VNode [keys](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key).
+*   [ ] Future: support VNode [keys][vnode-key].
 
 *   [ ] Future: allow custom components to overwrite default elements, e.g.,
     `MyLink` instead of `<a>`.
 
-*   [ ] Future: Expose as [widget](https://github.com/Matt-Esch/virtual-dom/blob/903d884a8e4f05f303ec6f2b920a3b5237cf8b92/docs/widget.md)
+*   [ ] Future: Expose as [widget][widget]
 
-Note: **remark-vdom** exposes an array of
-[VNode](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript)s.
-You will probably need to wrap the result in, for example, an `article`
-node, for rendering by virtual-dom.
+Note: **remark-vdom** exposes an array of [VNode][vnode]s. You will
+probably need to wrap the result in, for example, an `article` node,
+for rendering by virtual-dom.
 
 ## Installation
 
-[npm](https://docs.npmjs.com/cli/install):
+[npm][npm-install]:
 
 ```bash
 npm install remark-vdom
 ```
 
 **remark-vdom** is also available as an AMD, CommonJS, and globals
-module, [uncompressed and compressed](https://github.com/wooorm/remark-vdom/releases).
-
-## Table of Contents
-
-*   [Usage](#usage)
-
-*   [API](#api)
-
-    *   [remark.use(vdom)](#remarkusevdom)
-
-*   [Integrations](#integrations)
-
-*   [License](#license)
+module, [uncompressed and compressed][releases].
 
 ## Usage
 
@@ -59,7 +46,7 @@ Yields (note it’s an array of nodes):
 [ VirtualNode {
     tagName: 'P',
     properties: {},
-    children:
+    children: 
      [ VirtualText { text: 'Some ' },
        VirtualNode {
          tagName: 'EM',
@@ -108,16 +95,14 @@ Yields (note it’s an array of nodes):
 
 ## API
 
-### [remark](https://github.com/wooorm/remark#api).[use](https://github.com/wooorm/remark#remarkuseplugin-options)(vdom)
+### `remark.use(vdom)`
 
-**Parameters**
-
-*   `vdom` — This plugin.
+Compiles markdown to [Virtual DOM][vdom].
 
 ## Integrations
 
-All [**mdast** nodes](https://github.com/wooorm/mdast) can be compiled to
-HTML. Unknown **mdast** nodes are compiled to `div` nodes.
+All [**mdast** nodes][mdast] can be compiled to HTML. Unknown **mdast**
+nodes are compiled to `div` nodes.
 
 In addition, **remark-vdom** can be told how to compile nodes through three
 `data` properties:
