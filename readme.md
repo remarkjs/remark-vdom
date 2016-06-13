@@ -1,43 +1,48 @@
-# remark-vdom [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# remark-vdom [![Build Status][build-badge]][build-status] [![Coverage Status][coverage-badge]][coverage-status] [![Chat][chat-badge]][chat]
+
+<!--lint disable list-item-spacing-->
 
 **remark-vdom** compiles markdown to [Virtual DOM][vdom]. Built on
 [**remark**][remark], an extensively tested and pluggable markdown
 parser.
 
 *   [x] Inherently safe and sanitized: there is no way to pass raw HTML through.
-
 *   [x] Supports footnotes, todo lists;
-
 *   [ ] Future: support VNode [keys][vnode-key];
-
 *   [ ] Future: allow custom components to overwrite default elements, e.g.,
     `MyLink` instead of `<a>`;
-
 *   [ ] Future: Expose as [widget][].
 
-Note: **remark-vdom** exposes an array of [VNode][]s. You will
+Note: **remark-vdom** exposes an array of [VNode][]s.  You will
 probably need to wrap the result in, for example, an `article` node,
 for rendering by virtual-dom.
 
 ## Installation
 
-[npm][npm-install]:
+[npm][]:
 
 ```bash
 npm install remark-vdom
 ```
 
-**remark-vdom** is also available as an AMD, CommonJS, and globals
-module, [uncompressed and compressed][releases].
+**remark-vdom** is also available as an AMD, CommonJS, and
+globals module, [uncompressed and compressed][releases].
 
 ## Usage
+
+Dependencies:
 
 ```javascript
 var remark = require('remark');
 var vdom = require('remark-vdom');
-var doc = remark().use(vdom).process(
+```
+
+Process:
+
+```javascript
+var vdom = remark().use(vdom).process(
     'Some _emphasis_, **strongness**, and `code`.'
-);
+).contents;
 ```
 
 Yields (note it’s an array of nodes):
@@ -134,19 +139,31 @@ For example, the following node:
 <i id="foo">baz</i>
 ```
 
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/remark-vdom/master.svg
+[build-badge]: https://img.shields.io/travis/wooorm/remark-vdom.svg
 
-[travis]: https://travis-ci.org/wooorm/remark-vdom
+[build-status]: https://travis-ci.org/wooorm/remark-vdom
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/remark-vdom.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/remark-vdom.svg
 
-[codecov]: https://codecov.io/github/wooorm/remark-vdom
+[coverage-status]: https://codecov.io/github/wooorm/remark-vdom
 
-[npm-install]: https://docs.npmjs.com/cli/install
+[chat-badge]: https://img.shields.io/gitter/room/wooorm/remark.svg
+
+[chat]: https://gitter.im/wooorm/remark
 
 [releases]: https://github.com/wooorm/remark-vdom/releases
+
+[license]: LICENSE
+
+[author]: http://wooorm.com
+
+[npm]: https://docs.npmjs.com/cli/install
 
 [remark]: https://github.com/wooorm/remark
 
@@ -159,7 +176,3 @@ For example, the following node:
 [widget]: https://github.com/Matt-Esch/virtual-dom/blob/903d884a8e4f05f303ec6f2b920a3b5237cf8b92/docs/widget.md
 
 [vnode]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript
-
-## License
-
-[MIT](LICENSE) © [Titus Wormer](http://wooorm.com)
