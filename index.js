@@ -20,11 +20,11 @@ var transformer = require('./lib/transformer');
 /**
  * Attach a VDOM compiler.
  *
- * @param {Remark} remark - Instance.
+ * @param {Unified} processor - Instance.
  * @param {Object?} [options] - Configuration.
  */
-function plugin(remark, options) {
-    var MarkdownCompiler = remark.Compiler;
+function plugin(processor, options) {
+    var MarkdownCompiler = processor.Compiler;
     var ancestor = MarkdownCompiler.prototype;
     var proto;
     var key;
@@ -57,7 +57,7 @@ function plugin(remark, options) {
         proto[key] = compilers[key];
     }
 
-    remark.Compiler = VDOMCompiler;
+    processor.Compiler = VDOMCompiler;
 
     return transformer;
 }

@@ -127,14 +127,14 @@ function wrap(nodes) {
  * @return {string} - Processed `file`.
  */
 function process(file, config) {
-    return remark.use(vdom, config).process(file, config);
+    return remark().use(vdom, config).process(file, config).contents;
 }
 
 /*
  * Tests.
  */
 
-test('remark-html()', function (t) {
+test('vdom()', function (t) {
     var processor;
 
     t.equal(typeof vdom, 'function', 'should be a function');
@@ -145,12 +145,12 @@ test('remark-html()', function (t) {
 
     t.throws(
         function () {
-            remark.use(vdom).stringify({
+            remark().use(vdom).stringify({
                 'type': 'root',
                 'children': [{
                     'value': 'baz'
                 }]
-            });
+            }).contents;
         },
         /Expected node, got `\[object Object\]`/,
         'should throw when not given a node'
@@ -209,7 +209,9 @@ test('remark-html()', function (t) {
         .use(vdom);
 
     t.equal(
-        wrap(processor.process('![hello](example.jpg "overwritten")')),
+        wrap(processor.process(
+            '![hello](example.jpg "overwritten")'
+        ).contents),
         '<p><img src="example.jpg" alt="hello" title="overwrite"></p>',
         'should patch and merge attributes'
     );
@@ -225,7 +227,7 @@ test('remark-html()', function (t) {
         .use(vdom);
 
     t.equal(
-        wrap(processor.process('**Bold!**')),
+        wrap(processor.process('**Bold!**').contents),
         '<p><b>Bold!</b></p>',
         'should overwrite a tag-name'
     );
@@ -243,7 +245,7 @@ test('remark-html()', function (t) {
         .use(vdom);
 
     t.equal(
-        wrap(processor.process('```js\nvar\n```')),
+        wrap(processor.process('```js\nvar\n```').contents),
         '<pre><code class="foo language-js">var\n</code></pre>',
         'should NOT overwrite classes on code'
     );
@@ -427,13 +429,13 @@ test('Integrations', function (t) {
 
         config = exists(config) ? JSON.parse(read(config, 'utf-8')) : {};
 
-        result = remark
+        result = remark()
             .use(vdom, config)
             .use(INTEGRATION_MAP[integration], config)
             .process(file, config);
 
         t.equal(
-            wrap(result) + '\n',
+            wrap(result.contents) + '\n',
             output,
             'should work on `' + integration + '`'
         );
