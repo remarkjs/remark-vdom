@@ -2,6 +2,12 @@
 
 <!--lint disable no-multiple-toplevel-headings -->
 
+2.0.1 / 2016-06-13
+==================
+
+*   Add Node@^6.0.0 to Travis targets ([`9968a46`](https://github.com/wooorm/remark-vdom/commit/9968a46))
+*   Update dev-dependencies ([`81e0684`](https://github.com/wooorm/remark-vdom/commit/81e0684))
+
 2.0.0 / 2016-02-14
 ==================
 
