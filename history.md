@@ -2,6 +2,11 @@
 
 <!--lint disable no-multiple-toplevel-headings -->
 
+3.0.0 / 2016-06-28
+==================
+
+*   Update to include propper sanitation ([`97b948b`](https://github.com/wooorm/remark-vdom/commit/97b948b))
+
 2.0.1 / 2016-06-13
 ==================
 
