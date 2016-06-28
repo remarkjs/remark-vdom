@@ -8,62 +8,88 @@
 
 'use strict';
 
-/* eslint-env commonjs */
+/* Dependencies. */
+var toHAST = require('mdast-util-to-hast');
+var sanitize = require('hast-util-sanitize');
+var toH = require('hast-to-hyperscript');
+var hyperscript = require('virtual-dom/h');
 
-/*
- * Dependencies.
- */
-
-var compilers = require('./lib/compilers');
-var transformer = require('./lib/transformer');
+/* Methods. */
+var own = {}.hasOwnProperty;
 
 /**
  * Attach a VDOM compiler.
  *
  * @param {Unified} processor - Instance.
- * @param {Object?} [options] - Configuration.
+ * @param {Object?} [options]
+ * @param {Object?} [options.sanitize]
+ *   - Sanitation schema.
+ * @param {Object?} [options.components]
+ *   - Components.
+ * @param {string?} [options.prefix]
+ *   - Key prefix.
+ * @param {Function?} [options.createElement]
+ *   - `h()`.
  */
 function plugin(processor, options) {
-    var MarkdownCompiler = processor.Compiler;
-    var ancestor = MarkdownCompiler.prototype;
-    var proto;
-    var key;
+  var settings = options || {};
+  var components = settings.components || {};
+  var h = settings.h || hyperscript;
 
-    /**
-     * Extensible prototype.
-     */
-    function VDOMCompilerPrototype() {}
+  /**
+   * Wrapper around `h` to pass components in.
+   *
+   * @param {string} name - Element name.
+   * @param {Object} props - Attributes.
+   * @return {VNode} - VDOM element.
+   */
+  function w(name, props, children) {
+    var id = name.toLowerCase();
+    var fn = own.call(components, id) ? components[id] : h;
+    return fn(name, props, children);
+  }
 
-    VDOMCompilerPrototype.prototype = ancestor;
+  /**
+   * Extensible constructor.
+   */
+  function Compiler() {}
 
-    proto = new VDOMCompilerPrototype();
+  /**
+   * Wrap `children` in a HAST div.
+   *
+   * @param {Array.<Node>} children - Nodes.
+   * @return {Node} - Div node.
+   */
+  function div(children) {
+    return {
+      type: 'element',
+      tagName: 'div',
+      properties: {},
+      children: children
+    };
+  }
 
-    /**
-     * Extensible constructor.
-     *
-     * @param {VFile} file - Virtual file.
-     */
-    function VDOMCompiler(file) {
-        MarkdownCompiler.apply(this, [file, options]);
+  /**
+   * Compile MDAST to VDOM.
+   *
+   * @param {Node} node - MDAST node.
+   * @return {VNode} - VDOM element.
+   */
+  function compile(node) {
+    var clean = sanitize(div(toHAST(node).children), settings.sanitize);
+
+    /* If `div` is removed by sanitation, add it back. */
+    if (clean.type === 'root') {
+      clean = div(clean.children);
     }
 
-    VDOMCompiler.prototype = proto;
+    return toH(w, clean, settings.prefix);
+  }
 
-    /*
-     * Expose compilers.
-     */
+  Compiler.prototype.compile = compile;
 
-    for (key in compilers) {
-        proto[key] = compilers[key];
-    }
-
-    processor.Compiler = VDOMCompiler;
-
-    return transformer;
+  processor.Compiler = Compiler;
 }
 
-/*
- * Expose `plugin`.
- */
-
+/* Expose `plugin`. */
 module.exports = plugin;

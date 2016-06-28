@@ -14,62 +14,64 @@
     "compile",
     "remark"
   ],
-  "dependencies": {
-    "collapse-white-space": "^1.0.0",
-    "detab": "^1.0.0",
-    "normalize-uri": "^1.0.0",
-    "object-assign": "^4.0.1",
-    "param-case": "^2.1.0",
-    "property-information": "^3.1.0",
-    "trim": "0.0.1",
-    "trim-lines": "^1.0.0",
-    "unist-util-visit": "^1.0.0",
-    "virtual-dom": "^2.1.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wooorm/remark-vdom.git"
-  },
+  "files": [
+    "index.js"
+  ],
+  "repository": "https://github.com/wooorm/remark-vdom",
   "bugs": "https://github.com/wooorm/remark-vdom/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
   ],
-  "files": [
-    "index.js",
-    "lib/"
-  ],
+  "dependencies": {
+    "hast-to-hyperscript": "^2.0.2",
+    "hast-util-sanitize": "^1.0.0",
+    "mdast-util-to-hast": "^1.0.0",
+    "virtual-dom": "^2.1.1"
+  },
   "devDependencies": {
     "browserify": "^13.0.0",
-    "commonmark.json": "^0.25.0",
-    "eslint": "^2.0.0",
     "esmangle": "^1.0.0",
     "istanbul": "^0.4.0",
-    "jscs": "^3.0.0",
-    "jscs-jsdoc": "^2.0.0",
     "remark": "^5.0.0",
     "remark-cli": "^1.0.0",
     "remark-comment-config": "^4.0.0",
     "remark-github": "^5.0.0",
     "remark-lint": "^4.0.0",
-    "remark-toc": "^3.0.0",
     "remark-usage": "^4.0.0",
     "remark-validate-links": "^4.0.0",
-    "remark-yaml-config": "^3.0.0",
     "tape": "^4.0.0",
-    "to-vfile": "^1.0.0",
-    "vdom-to-html": "^2.2.0"
+    "vdom-to-html": "^2.2.0",
+    "xo": "^0.16.0"
   },
   "scripts": {
     "build-md": "remark . --quiet --frail",
     "build-bundle": "browserify index.js --bare -s remarkVDOM > remark-vdom.js",
     "build-mangle": "esmangle remark-vdom.js > remark-vdom.min.js",
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
-    "lint-api": "eslint .",
-    "lint-style": "jscs --reporter inline .",
-    "lint": "npm run lint-api && npm run lint-style",
-    "test-api": "node test/index.js",
-    "test-coverage": "istanbul cover test/index.js",
+    "lint": "xo",
+    "test-api": "node test.js",
+    "test-coverage": "istanbul cover test.js",
     "test": "npm run build && npm run lint && npm run test-coverage"
+  },
+  "xo": {
+    "space": true,
+    "ignores": [
+      "remark-vdom.js",
+      "remark-vdom.min.js"
+    ]
+  },
+  "remarkConfig": {
+    "output": true,
+    "plugins": [
+      "comment-config",
+      "lint",
+      "github",
+      "validate-links",
+      "usage"
+    ],
+    "settings": {
+      "bullet": "*"
+    }
   }
 }

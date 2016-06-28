@@ -1,6 +1,6 @@
 # remark-vdom [![Build Status][build-badge]][build-status] [![Coverage Status][coverage-badge]][coverage-status] [![Chat][chat-badge]][chat]
 
-<!--lint disable list-item-spacing-->
+<!--lint disable list-item-spacing heading-increment-->
 
 **remark-vdom** compiles markdown to [Virtual DOM][vdom]. Built on
 [**remark**][remark], an extensively tested and pluggable markdown
@@ -8,14 +8,9 @@ parser.
 
 *   [x] Inherently safe and sanitized: there is no way to pass raw HTML through.
 *   [x] Supports footnotes, todo lists;
-*   [ ] Future: support VNode [keys][vnode-key];
-*   [ ] Future: allow custom components to overwrite default elements, e.g.,
-    `MyLink` instead of `<a>`;
-*   [ ] Future: Expose as [widget][].
-
-Note: **remark-vdom** exposes an array of [VNode][]s.  You will
-probably need to wrap the result in, for example, an `article` node,
-for rendering by virtual-dom.
+*   [x] Support VNode [keys][vnode-key];
+*   [x] Custom components overwriting default elements
+    (`MyLink` instead of `<a>`);
 
 ## Installation
 
@@ -40,104 +35,123 @@ var vdom = require('remark-vdom');
 Process:
 
 ```javascript
-var vdom = remark().use(vdom).process(
-    'Some _emphasis_, **strongness**, and `code`.'
-).contents;
+var vtree = remark()
+  .use(vdom)
+  .process('_Emphasis_, **importance**, and `code`.')
+  .contents;
 ```
 
 Yields (note it’s an array of nodes):
 
 ```txt
-[ VirtualNode {
-    tagName: 'P',
-    properties: {},
-    children: 
-     [ VirtualText { text: 'Some ' },
-       VirtualNode {
-         tagName: 'EM',
-         properties: {},
-         children: [ VirtualText { text: 'emphasis' } ],
-         key: undefined,
-         namespace: null,
-         count: 1,
-         hasWidgets: false,
-         hasThunks: false,
-         hooks: undefined,
-         descendantHooks: false },
-       VirtualText { text: ', ' },
-       VirtualNode {
-         tagName: 'STRONG',
-         properties: {},
-         children: [ VirtualText { text: 'strongness' } ],
-         key: undefined,
-         namespace: null,
-         count: 1,
-         hasWidgets: false,
-         hasThunks: false,
-         hooks: undefined,
-         descendantHooks: false },
-       VirtualText { text: ', and ' },
-       VirtualNode {
-         tagName: 'CODE',
-         properties: {},
-         children: [ VirtualText { text: 'code' } ],
-         key: undefined,
-         namespace: null,
-         count: 1,
-         hasWidgets: false,
-         hasThunks: false,
-         hooks: undefined,
-         descendantHooks: false },
-       VirtualText { text: '.' } ],
-    key: undefined,
-    namespace: null,
-    count: 10,
-    hasWidgets: false,
-    hasThunks: false,
-    hooks: undefined,
-    descendantHooks: false } ]
+VirtualNode {
+  tagName: 'DIV',
+  properties: { key: undefined },
+  children: 
+   [ VirtualNode {
+       tagName: 'P',
+       properties: { key: undefined },
+       children: 
+        [ VirtualNode {
+            tagName: 'EM',
+            properties: { key: undefined },
+            children: [ VirtualText { text: 'Emphasis' } ],
+            key: 'h-3',
+            namespace: null,
+            count: 1,
+            hasWidgets: false,
+            hasThunks: false,
+            hooks: undefined,
+            descendantHooks: false },
+          VirtualText { text: ', ' },
+          VirtualNode {
+            tagName: 'STRONG',
+            properties: { key: undefined },
+            children: [ VirtualText { text: 'importance' } ],
+            key: 'h-4',
+            namespace: null,
+            count: 1,
+            hasWidgets: false,
+            hasThunks: false,
+            hooks: undefined,
+            descendantHooks: false },
+          VirtualText { text: ', and ' },
+          VirtualNode {
+            tagName: 'CODE',
+            properties: { key: undefined },
+            children: [ VirtualText { text: 'code' } ],
+            key: 'h-5',
+            namespace: null,
+            count: 1,
+            hasWidgets: false,
+            hasThunks: false,
+            hooks: undefined,
+            descendantHooks: false },
+          VirtualText { text: '.' } ],
+       key: 'h-2',
+       namespace: null,
+       count: 9,
+       hasWidgets: false,
+       hasThunks: false,
+       hooks: undefined,
+       descendantHooks: false } ],
+  key: 'h-1',
+  namespace: null,
+  count: 10,
+  hasWidgets: false,
+  hasThunks: false,
+  hooks: undefined,
+  descendantHooks: false }
 ```
 
 ## API
 
-### `remark.use(vdom)`
+### `remark().use(vdom[, options])`
 
 Compiles markdown to [Virtual DOM][vdom].
 
-## Integrations
+##### `options`
 
-All [**mdast** nodes][mdast] can be compiled to HTML. Unknown **mdast**
-nodes are compiled to `div` nodes.
+###### `options.sanitize`
 
-In addition, **remark-vdom** can be told how to compile nodes through three
-`data` properties:
+How to sanitise the output (`Object`, default: `null`).
 
-*   `htmlName` — Tag-name to compile as;
-*   `htmlAttributes` — Map of attributes to add.
+An object can be passed, in which case it’s passed to
+[`hast-util-sanitize`][sanitize].  By default, input is sanitised
+according to [GitHub’s sanitation rules][github], with the addition
+that all embedded HTML is also stripped.
 
-For example, the following node:
+###### `options.prefix`
 
-```json
-{
-  "type": "emphasis",
-  "data": {
-    "htmlName": "i",
-    "htmlAttributes": {
-      "id": "foo"
+Optimisation [hint][] (`string`, default: `h-`).
+
+###### `options.h`
+
+Hyperscript to use (`Function`, default: `require('virtual-dom/h')`).
+
+###### `options.components`
+
+Map of tag-names to custom components (`Object.<Function>`, optional).
+That component is invoked with `tagName`, `props`, and `children`.
+It can return any VDOM compatible value (`VNode`, `VText`, `Widget`,
+etc.).  For example:
+
+```js
+var components = {
+  code: function (tagName, props, children) {
+    /* Ensure a default programming language is set. */
+    if (!props.className) {
+      props.className = 'language-js';
     }
-  },
-  "children": [{
-    "type": "text",
-    "value": "baz",
-  }]
+
+    return h(tagName, props, children);
+  }
 }
 ```
 
-...would yield (when rendering):
+## Integrations
 
-```markdown
-<i id="foo">baz</i>
-```
+Integrates with the same tools as [**remark-html**][remark-html].
 
 ## License
 
@@ -167,12 +181,14 @@ For example, the following node:
 
 [remark]: https://github.com/wooorm/remark
 
-[mdast]: https://github.com/wooorm/mdast
-
 [vdom]: https://github.com/Matt-Esch/virtual-dom
 
 [vnode-key]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
 
-[widget]: https://github.com/Matt-Esch/virtual-dom/blob/903d884a8e4f05f303ec6f2b920a3b5237cf8b92/docs/widget.md
+[remark-html]: https://github.com/wooorm/remark-html
 
-[vnode]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript
+[hint]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
+
+[sanitize]: https://github.com/wooorm/hast-util-sanitize
+
+[github]: https://github.com/wooorm/hast-util-sanitize#schema
