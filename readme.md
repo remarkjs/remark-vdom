@@ -1,8 +1,6 @@
 # remark-vdom [![Build Status][build-badge]][build-status] [![Coverage Status][coverage-badge]][coverage-status] [![Chat][chat-badge]][chat]
 
-<!--lint disable list-item-spacing heading-increment-->
-
-**remark-vdom** compiles markdown to [Virtual DOM][vdom]. Built on
+**remark-vdom** compiles markdown to [Virtual DOM][vdom].  Built on
 [**remark**][remark], an extensively tested and pluggable markdown
 parser.
 

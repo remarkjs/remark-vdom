@@ -32,14 +32,11 @@
   "devDependencies": {
     "browserify": "^13.0.0",
     "esmangle": "^1.0.0",
-    "istanbul": "^0.4.0",
-    "remark": "^5.0.0",
-    "remark-cli": "^1.0.0",
-    "remark-comment-config": "^4.0.0",
-    "remark-github": "^5.0.0",
-    "remark-lint": "^4.0.0",
-    "remark-usage": "^4.0.0",
-    "remark-validate-links": "^4.0.0",
+    "nyc": "^8.1.0",
+    "remark": "^6.0.0",
+    "remark-cli": "^2.0.0",
+    "remark-preset-wooorm": "^1.0.0",
+    "remark-usage": "^4.0.1",
     "tape": "^4.0.0",
     "vdom-to-html": "^2.2.0",
     "xo": "^0.16.0"
@@ -51,27 +48,26 @@
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
     "lint": "xo",
     "test-api": "node test.js",
-    "test-coverage": "istanbul cover test.js",
+    "test-coverage": "nyc --reporter lcov tape test/index.js",
     "test": "npm run build && npm run lint && npm run test-coverage"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
   },
   "xo": {
     "space": true,
     "ignores": [
-      "remark-vdom.js",
-      "remark-vdom.min.js"
+      "remark-vdom.js"
     ]
   },
   "remarkConfig": {
     "output": true,
+    "presets": "wooorm",
     "plugins": [
-      "comment-config",
-      "lint",
-      "github",
-      "validate-links",
       "usage"
-    ],
-    "settings": {
-      "bullet": "*"
-    }
+    ]
   }
 }
