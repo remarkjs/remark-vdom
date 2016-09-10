@@ -112,12 +112,14 @@ Compiles markdown to [Virtual DOM][vdom].
 
 ###### `options.sanitize`
 
-How to sanitise the output (`Object`, default: `null`).
+How to sanitise the output (`Object` or `boolean`, default: `null`).
 
-An object can be passed, in which case it’s passed to
-[`hast-util-sanitize`][sanitize].  By default, input is sanitised
-according to [GitHub’s sanitation rules][github], with the addition
-that all embedded HTML is also stripped.
+Sanitation is done by [`hast-util-sanitize`][sanitize], except when
+`false` is given.  If an object is passed in, it’s given as a schema
+to `sanitize`.  By default, input is sanitised according to [GitHub’s
+sanitation rules][github].
+
+Embedded HTML is **always** stripped.
 
 ###### `options.prefix`
 

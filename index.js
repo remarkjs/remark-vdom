@@ -33,6 +33,9 @@ var own = {}.hasOwnProperty;
  */
 function plugin(processor, options) {
   var settings = options || {};
+  var info = settings.sanitize;
+  var clean = info !== false;
+  var schema = info && typeof info === 'object' ? info : null;
   var components = settings.components || {};
   var h = settings.h || hyperscript;
 
@@ -76,14 +79,18 @@ function plugin(processor, options) {
    * @return {VNode} - VDOM element.
    */
   function compile(node) {
-    var clean = sanitize(div(toHAST(node).children), settings.sanitize);
+    var hast = div(toHAST(node).children);
 
-    /* If `div` is removed by sanitation, add it back. */
-    if (clean.type === 'root') {
-      clean = div(clean.children);
+    if (clean) {
+      hast = sanitize(hast, schema);
+
+      /* If `div` is removed by sanitation, add it back. */
+      if (hast.type === 'root') {
+        hast = div(hast.children);
+      }
     }
 
-    return toH(w, clean, settings.prefix);
+    return toH(w, hast, settings.prefix);
   }
 
   Compiler.prototype.compile = compile;

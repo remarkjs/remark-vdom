@@ -53,6 +53,14 @@ test('remark-vdom', function (t) {
 
   t.equal(
     check('_Emphasis_!', {
+      sanitize: false
+    }),
+    '<div><p><em>Emphasis</em>!</p></div>',
+    '`sanitize: false`'
+  );
+
+  t.equal(
+    check('_Emphasis_!', {
       components: {
         em: function (name, props, children) {
           return children;
