@@ -8,8 +8,6 @@
 
 'use strict';
 
-/* eslint-env node */
-
 /* Dependencies. */
 var test = require('tape');
 var remark = require('remark');

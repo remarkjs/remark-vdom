@@ -14,14 +14,14 @@
     "compile",
     "remark"
   ],
-  "files": [
-    "index.js"
-  ],
   "repository": "https://github.com/wooorm/remark-vdom",
   "bugs": "https://github.com/wooorm/remark-vdom/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "files": [
+    "index.js"
   ],
   "dependencies": {
     "hast-to-hyperscript": "^2.0.2",
@@ -48,7 +48,7 @@
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
     "lint": "xo",
     "test-api": "node test.js",
-    "test-coverage": "nyc --reporter lcov tape test/index.js",
+    "test-coverage": "nyc --reporter lcov tape test.js",
     "test": "npm run build && npm run lint && npm run test-coverage"
   },
   "nyc": {
