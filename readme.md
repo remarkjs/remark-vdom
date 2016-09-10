@@ -121,6 +121,23 @@ sanitation rules][github].
 
 Embedded HTML is **always** stripped.
 
+For example, by default `className`s are stripped.  To keep them in,
+use something like:
+
+````js
+    // ...
+    var merge = require('deepmerge');
+    var gh = require('hast-util-sanitize/lib/github');
+
+    var schema = merge(gh, {attributes: {'*': ['className']}});
+
+    var vtree = remark()
+      .use(vdom, {sanitize: schema})
+      .process('```js\nfoo()\n```')
+      .contents;
+    // ...
+````
+
 ###### `options.prefix`
 
 Optimisation [hint][] (`string`, default: `h-`).
