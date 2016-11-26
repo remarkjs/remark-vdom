@@ -26,7 +26,7 @@
   "dependencies": {
     "hast-to-hyperscript": "^2.0.2",
     "hast-util-sanitize": "^1.0.0",
-    "mdast-util-to-hast": "^1.0.0",
+    "mdast-util-to-hast": "^2.1.1",
     "virtual-dom": "^2.1.1"
   },
   "devDependencies": {
