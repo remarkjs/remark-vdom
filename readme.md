@@ -18,9 +18,6 @@ parser.
 npm install remark-vdom
 ```
 
-**remark-vdom** is also available as an AMD, CommonJS, and
-globals module, [uncompressed and compressed][releases].
-
 ## Usage
 
 Dependencies:
@@ -45,11 +42,11 @@ Yields (note it’s an array of nodes):
 VirtualNode {
   tagName: 'DIV',
   properties: { key: undefined },
-  children: 
+  children:
    [ VirtualNode {
        tagName: 'P',
        properties: { key: undefined },
-       children: 
+       children:
         [ VirtualNode {
             tagName: 'EM',
             properties: { key: undefined },
@@ -187,8 +184,6 @@ Integrates with the same tools as [**remark-html**][remark-html].
 [chat-badge]: https://img.shields.io/gitter/room/wooorm/remark.svg
 
 [chat]: https://gitter.im/wooorm/remark
-
-[releases]: https://github.com/wooorm/remark-vdom/releases
 
 [license]: LICENSE
 
