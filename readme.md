@@ -20,20 +20,16 @@ npm install remark-vdom
 
 ## Usage
 
-Dependencies:
-
 ```javascript
 var remark = require('remark');
 var vdom = require('remark-vdom');
-```
 
-Process:
-
-```javascript
 var vtree = remark()
   .use(vdom)
   .process('_Emphasis_, **importance**, and `code`.')
   .contents;
+
+console.dir(vtree, {depth: null});
 ```
 
 Yields (note it’s an array of nodes):
