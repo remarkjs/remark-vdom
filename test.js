@@ -1,21 +1,11 @@
-/**
- * @author Titus Wormer
- * @copyright 2016 Titus Wormer
- * @license MIT
- * @module remark-vdom
- * @fileoverview Test suite for `remark-vdom`.
- */
-
 'use strict';
 
-/* Dependencies. */
 var test = require('tape');
 var remark = require('remark');
 var h = require('virtual-dom/h');
 var vdom2html = require('vdom-to-html');
 var vdom = require('./');
 
-/* Tests. */
 test('remark-vdom', function (t) {
   function check(fixture, options) {
     return vdom2html(remark().use(vdom, options).process(fixture).contents);
