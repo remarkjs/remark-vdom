@@ -26,7 +26,7 @@ var vdom = require('remark-vdom');
 
 var vtree = remark()
   .use(vdom)
-  .process('_Emphasis_, **importance**, and `code`.')
+  .processSync('_Emphasis_, **importance**, and `code`.')
   .contents;
 
 console.dir(vtree, {depth: null});
@@ -123,7 +123,7 @@ var gh = require('hast-util-sanitize/lib/github');
 
 var schema = merge(gh, {attributes: {'*': ['className']}});
 
-var vtree = remark().use(vdom, {sanitize: schema}).process(/* ... */);
+var vtree = remark().use(vdom, {sanitize: schema}).processSync(/* ... */);
 ```
 
 ###### `options.prefix`

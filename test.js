@@ -8,7 +8,7 @@ var vdom = require('./');
 
 test('remark-vdom', function (t) {
   function check(fixture, options) {
-    return vdom2html(remark().use(vdom, options).process(fixture).contents);
+    return vdom2html(remark().use(vdom, options).processSync(fixture).contents);
   }
 
   t.equal(
@@ -61,7 +61,7 @@ test('remark-vdom', function (t) {
     '`components`'
   );
 
-  var node = remark().use(vdom, {prefix: 'f-'}).process('_Emphasis_!').contents;
+  var node = remark().use(vdom, {prefix: 'f-'}).processSync('_Emphasis_!').contents;
 
   t.equal(node.key, 'f-1', '`prefix`');
 

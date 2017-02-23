@@ -9,7 +9,7 @@ var has = require('has');
 module.exports = plugin;
 
 /* Attach a VDOM compiler. */
-function plugin(processor, options) {
+function plugin(options) {
   var settings = options || {};
   var info = settings.sanitize;
   var clean = info !== false;
@@ -17,16 +17,12 @@ function plugin(processor, options) {
   var components = settings.components || {};
   var h = settings.h || hyperscript;
 
-  Compiler.prototype.compile = compile;
-
-  processor.Compiler = Compiler;
+  this.Compiler = compiler;
 
   return;
 
-  function Compiler() {}
-
   /* Compile MDAST to VDOM. */
-  function compile(node) {
+  function compiler(node) {
     var hast = div(toHAST(node).children);
 
     if (clean) {
