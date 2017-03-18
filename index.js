@@ -19,8 +19,6 @@ function plugin(options) {
 
   this.Compiler = compiler;
 
-  return;
-
   /* Compile MDAST to VDOM. */
   function compiler(node) {
     var hast = div(toHAST(node).children);
