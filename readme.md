@@ -4,11 +4,11 @@
 [**remark**][remark], an extensively tested and pluggable markdown
 parser.
 
-*   [x] Inherently safe and sanitized: there is no way to pass raw HTML through.
-*   [x] Supports footnotes, todo lists;
-*   [x] Support VNode [keys][vnode-key];
+*   [x] Inherently safe and sanitized: there is no way to pass raw HTML through
+*   [x] Supports footnotes, todo lists
+*   [x] Support VNode [keys][vnode-key]
 *   [x] Custom components overwriting default elements
-    (`MyLink` instead of `<a>`);
+    (`MyLink` instead of `<a>`)
 
 ## Installation
 
