@@ -32,7 +32,7 @@ var vtree = remark()
 console.dir(vtree, {depth: null});
 ```
 
-Yields (note it’s an array of nodes):
+Yields:
 
 ```txt
 VirtualNode {
