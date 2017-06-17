@@ -1,8 +1,7 @@
 # remark-vdom [![Build Status][build-badge]][build-status] [![Coverage Status][coverage-badge]][coverage-status] [![Chat][chat-badge]][chat]
 
-**remark-vdom** compiles markdown to [Virtual DOM][vdom].  Built on
-[**remark**][remark], an extensively tested and pluggable markdown
-parser.
+Compiles markdown to [Virtual DOM][vdom].  Built on [**remark**][remark], an
+extensively tested and pluggable markdown processor.
 
 *   [x] Inherently safe and sanitized: there is no way to pass raw HTML through
 *   [x] Supports footnotes, todo lists
@@ -156,7 +155,7 @@ var components = {
 
 ## Integrations
 
-Integrates with the same tools as [**remark-html**][remark-html].
+Integrates with the same tools as [`remark-html`][remark-html].
 
 ## License
 
