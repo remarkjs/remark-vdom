@@ -19,22 +19,26 @@ npm install remark-vdom
 
 ## Usage
 
+Say we have the following file, `example.js`:
+
 ```javascript
-var remark = require('remark');
+var unified = require('unified');
+var markdown = require('remark-parse');
 var vdom = require('remark-vdom');
 
-var vtree = remark()
+unified()
+  .use(markdown)
   .use(vdom)
-  .processSync('_Emphasis_, **importance**, and `code`.')
-  .contents;
-
-console.dir(vtree, {depth: null});
+  .process('Some _emphasis_, **importance**, and `code`.', function (err, file) {
+    if (err) throw err;
+    console.dir(file.contents, {depth: null});
+  });
 ```
 
-Yields:
+Now, running `node example` yields:
 
-```txt
-VirtualNode {
+```js
+{
   tagName: 'DIV',
   properties: { key: undefined },
   children:
@@ -42,10 +46,11 @@ VirtualNode {
        tagName: 'P',
        properties: { key: undefined },
        children:
-        [ VirtualNode {
+        [ VirtualText { text: 'Some ' },
+          VirtualNode {
             tagName: 'EM',
             properties: { key: undefined },
-            children: [ VirtualText { text: 'Emphasis' } ],
+            children: [ VirtualText { text: 'emphasis' } ],
             key: 'h-3',
             namespace: null,
             count: 1,
@@ -80,14 +85,14 @@ VirtualNode {
           VirtualText { text: '.' } ],
        key: 'h-2',
        namespace: null,
-       count: 9,
+       count: 10,
        hasWidgets: false,
        hasThunks: false,
        hooks: undefined,
        descendantHooks: false } ],
   key: 'h-1',
   namespace: null,
-  count: 10,
+  count: 11,
   hasWidgets: false,
   hasThunks: false,
   hooks: undefined,
