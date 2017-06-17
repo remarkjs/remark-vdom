@@ -209,6 +209,6 @@ Integrates with the same tools as [`remark-html`][remark-html].
 
 [hint]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
 
-[sanitize]: https://github.com/wooorm/hast-util-sanitize
+[sanitize]: https://github.com/syntax-tree/hast-util-sanitize
 
-[github]: https://github.com/wooorm/hast-util-sanitize#schema
+[github]: https://github.com/syntax-tree/hast-util-sanitize#schema
