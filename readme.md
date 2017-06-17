@@ -162,6 +162,19 @@ var components = {
 
 Integrates with the same tools as [`remark-html`][remark-html].
 
+## Related
+
+*   [`remark-rehype`](https://github.com/wooorm/remark-rehype)
+    — Properly transform to an HTML virtual DOM (HAST)
+*   [`rehype-react`](https://github.com/rhysd/rehype-react)
+    — Transform HAST to React
+*   [`remark-react`](https://github.com/mapbox/remark-react)
+    — Compile markdown to React
+*   [`remark-man`](https://github.com/wooorm/remark-man)
+    — Compile to man pages
+*   [`remark-html`][remark-html]
+    — Compile to HTML
+
 ## License
 
 [MIT][license] © [Titus Wormer][author]
