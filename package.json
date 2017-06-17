@@ -24,7 +24,6 @@
     "index.js"
   ],
   "dependencies": {
-    "has": "^1.0.1",
     "hast-to-hyperscript": "^3.0.0",
     "hast-util-sanitize": "^1.0.0",
     "mdast-util-to-hast": "^2.1.1",

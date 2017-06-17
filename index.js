@@ -4,9 +4,10 @@ var toHAST = require('mdast-util-to-hast');
 var sanitize = require('hast-util-sanitize');
 var toH = require('hast-to-hyperscript');
 var hyperscript = require('virtual-dom/h');
-var has = require('has');
 
 module.exports = plugin;
+
+var own = {}.hasOwnProperty;
 
 /* Attach a VDOM compiler. */
 function plugin(options) {
@@ -38,7 +39,7 @@ function plugin(options) {
   /* Wrapper around `h` to pass components in. */
   function w(name, props, children) {
     var id = name.toLowerCase();
-    var fn = has(components, id) ? components[id] : h;
+    var fn = own.call(components, id) ? components[id] : h;
     return fn(name, props, children);
   }
 
