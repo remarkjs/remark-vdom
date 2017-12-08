@@ -175,6 +175,13 @@ Integrates with the same tools as [`remark-html`][remark-html].
 *   [`remark-html`][remark-html]
     — Compile to HTML
 
+## Contribute
+
+See [`contribute.md` in `remarkjs/remarkj`][contribute] for ways to get started.
+
+This organisation has a [Code of Conduct][coc].  By interacting with this
+repository, organisation, or community you agree to abide by its terms.
+
 ## License
 
 [MIT][license] © [Titus Wormer][author]
@@ -212,3 +219,7 @@ Integrates with the same tools as [`remark-html`][remark-html].
 [sanitize]: https://github.com/syntax-tree/hast-util-sanitize
 
 [github]: https://github.com/syntax-tree/hast-util-sanitize#schema
+
+[contribute]: https://github.com/remarkjs/remark/blob/master/contributing.md
+
+[coc]: https://github.com/remarkjs/remark/blob/master/code-of-conduct.md
