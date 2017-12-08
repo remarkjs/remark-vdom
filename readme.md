@@ -164,13 +164,13 @@ Integrates with the same tools as [`remark-html`][remark-html].
 
 ## Related
 
-*   [`remark-rehype`](https://github.com/wooorm/remark-rehype)
+*   [`remark-rehype`](https://github.com/remarkjs/remark-rehype)
     — Properly transform to an HTML virtual DOM (HAST)
 *   [`rehype-react`](https://github.com/rhysd/rehype-react)
     — Transform HAST to React
 *   [`remark-react`](https://github.com/mapbox/remark-react)
     — Compile markdown to React
-*   [`remark-man`](https://github.com/wooorm/remark-man)
+*   [`remark-man`](https://github.com/remarkjs/remark-man)
     — Compile to man pages
 *   [`remark-html`][remark-html]
     — Compile to HTML
@@ -181,17 +181,17 @@ Integrates with the same tools as [`remark-html`][remark-html].
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/wooorm/remark-vdom.svg
+[build-badge]: https://img.shields.io/travis/remarkjs/remark-vdom.svg
 
-[build-status]: https://travis-ci.org/wooorm/remark-vdom
+[build-status]: https://travis-ci.org/remarkjs/remark-vdom
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/remark-vdom.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/remarkjs/remark-vdom.svg
 
-[coverage-status]: https://codecov.io/github/wooorm/remark-vdom
+[coverage-status]: https://codecov.io/github/remarkjs/remark-vdom
 
-[chat-badge]: https://img.shields.io/gitter/room/wooorm/remark.svg
+[chat-badge]: https://img.shields.io/gitter/room/remarkjs/Lobby.svg
 
-[chat]: https://gitter.im/wooorm/remark
+[chat]: https://gitter.im/remarkjs/Lobby
 
 [license]: LICENSE
 
@@ -199,13 +199,13 @@ Integrates with the same tools as [`remark-html`][remark-html].
 
 [npm]: https://docs.npmjs.com/cli/install
 
-[remark]: https://github.com/wooorm/remark
+[remark]: https://github.com/remarkjs/remark
 
 [vdom]: https://github.com/Matt-Esch/virtual-dom
 
 [vnode-key]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
 
-[remark-html]: https://github.com/wooorm/remark-html
+[remark-html]: https://github.com/remarkjs/remark-html
 
 [hint]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
 
