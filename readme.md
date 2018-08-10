@@ -22,17 +22,17 @@ npm install remark-vdom
 Say we have the following file, `example.js`:
 
 ```javascript
-var unified = require('unified');
-var markdown = require('remark-parse');
-var vdom = require('remark-vdom');
+var unified = require('unified')
+var markdown = require('remark-parse')
+var vdom = require('remark-vdom')
 
 unified()
   .use(markdown)
   .use(vdom)
-  .process('Some _emphasis_, **importance**, and `code`.', function (err, file) {
-    if (err) throw err;
-    console.dir(file.contents, {depth: null});
-  });
+  .process('Some _emphasis_, **importance**, and `code`.', function(err, file) {
+    if (err) throw err
+    console.dir(file.contents, {depth: null})
+  })
 ```
 
 Now, running `node example` yields:
@@ -122,12 +122,14 @@ For example, by default `className`s are stripped.  To keep them in,
 use something like:
 
 ```js
-var merge = require('deepmerge');
-var gh = require('hast-util-sanitize/lib/github');
+var merge = require('deepmerge')
+var gh = require('hast-util-sanitize/lib/github')
 
-var schema = merge(gh, {attributes: {'*': ['className']}});
+var schema = merge(gh, {attributes: {'*': ['className']}})
 
-var vtree = remark().use(vdom, {sanitize: schema}).processSync(/* ... */);
+var vtree = remark()
+  .use(vdom, {sanitize: schema})
+  .processSync(/* ... */)
 ```
 
 ###### `options.prefix`
@@ -146,15 +148,15 @@ It can return any VDOM compatible value (`VNode`, `VText`, `Widget`,
 etc.).  For example:
 
 ```js
-var components = {
-  code: function (tagName, props, children) {
-    /* Ensure a default programming language is set. */
-    if (!props.className) {
-      props.className = 'language-js';
-    }
+var components = {code: code}
 
-    return h(tagName, props, children);
+function code(tagName, props, children) {
+  /* Ensure a default programming language is set. */
+  if (!props.className) {
+    props.className = 'language-js'
   }
+
+  return h(tagName, props, children)
 }
 ```
 
