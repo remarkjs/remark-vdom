@@ -4,7 +4,7 @@ var test = require('tape');
 var remark = require('remark');
 var h = require('virtual-dom/h');
 var vdom2html = require('vdom-to-html');
-var vdom = require('./');
+var vdom = require('.');
 
 test('remark-vdom', function (t) {
   function check(fixture, options) {
