@@ -9,7 +9,7 @@ module.exports = plugin
 
 var own = {}.hasOwnProperty
 
-/* Attach a VDOM compiler. */
+// Attach a VDOM compiler.
 function plugin(options) {
   var settings = options || {}
   var info = settings.sanitize
@@ -20,14 +20,14 @@ function plugin(options) {
 
   this.Compiler = compiler
 
-  /* Compile MDAST to VDOM. */
+  // Compile mdast to vdom.
   function compiler(node) {
     var hast = div(toHAST(node).children)
 
     if (clean) {
       hast = sanitize(hast, schema)
 
-      /* If `div` is removed by sanitation, add it back. */
+      // If `div` is removed by sanitation, add it back.
       if (hast.type === 'root') {
         hast = div(hast.children)
       }
@@ -36,14 +36,14 @@ function plugin(options) {
     return toH(w, hast, settings.prefix)
   }
 
-  /* Wrapper around `h` to pass components in. */
+  // Wrapper around `h` to pass components in.
   function w(name, props, children) {
     var id = name.toLowerCase()
     var fn = own.call(components, id) ? components[id] : h
     return fn(name, props, children)
   }
 
-  /* Wrap `children` in a HAST div. */
+  // Wrap `children` in a HAST div.
   function div(children) {
     return {
       type: 'element',
