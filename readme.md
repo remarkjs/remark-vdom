@@ -3,32 +3,32 @@
 [![Build][build-badge]][build]
 [![Coverage][coverage-badge]][coverage]
 [![Downloads][downloads-badge]][downloads]
-[![Chat][chat-badge]][chat]
+[![Size][size-badge]][size]
 [![Sponsors][sponsors-badge]][collective]
 [![Backers][backers-badge]][collective]
+[![Chat][chat-badge]][chat]
 
-Compiles markdown to [Virtual DOM][vdom].  Built on [**remark**][remark], an
-extensively tested and pluggable markdown processor.
+[**remark**][remark] plugin to compile Markdown to [Virtual DOM][vdom].
 
 *   [x] Inherently safe and sanitized: there is no way to pass raw HTML through
 *   [x] Supports footnotes, todo lists
 *   [x] Support VNode [keys][vnode-key]
-*   [x] Custom components overwriting default elements
-    (`MyLink` instead of `<a>`)
+*   [x] Custom components overwriting default elements (`MyLink` instead of
+    `<a>`)
 
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install remark-vdom
 ```
 
-## Usage
+## Use
 
 Say we have the following file, `example.js`:
 
-```javascript
+```js
 var unified = require('unified')
 var markdown = require('remark-parse')
 var vdom = require('remark-vdom')
@@ -45,72 +45,79 @@ unified()
 Now, running `node example` yields:
 
 ```js
-{
+VirtualNode {
   tagName: 'DIV',
   properties: { key: undefined },
-  children:
-   [ VirtualNode {
-       tagName: 'P',
-       properties: { key: undefined },
-       children:
-        [ VirtualText { text: 'Some ' },
-          VirtualNode {
-            tagName: 'EM',
-            properties: { key: undefined },
-            children: [ VirtualText { text: 'emphasis' } ],
-            key: 'h-3',
-            namespace: null,
-            count: 1,
-            hasWidgets: false,
-            hasThunks: false,
-            hooks: undefined,
-            descendantHooks: false },
-          VirtualText { text: ', ' },
-          VirtualNode {
-            tagName: 'STRONG',
-            properties: { key: undefined },
-            children: [ VirtualText { text: 'importance' } ],
-            key: 'h-4',
-            namespace: null,
-            count: 1,
-            hasWidgets: false,
-            hasThunks: false,
-            hooks: undefined,
-            descendantHooks: false },
-          VirtualText { text: ', and ' },
-          VirtualNode {
-            tagName: 'CODE',
-            properties: { key: undefined },
-            children: [ VirtualText { text: 'code' } ],
-            key: 'h-5',
-            namespace: null,
-            count: 1,
-            hasWidgets: false,
-            hasThunks: false,
-            hooks: undefined,
-            descendantHooks: false },
-          VirtualText { text: '.' } ],
-       key: 'h-2',
-       namespace: null,
-       count: 10,
-       hasWidgets: false,
-       hasThunks: false,
-       hooks: undefined,
-       descendantHooks: false } ],
+  children: [
+    VirtualNode {
+      tagName: 'P',
+      properties: { key: undefined },
+      children: [
+        VirtualText { text: 'Some ' },
+        VirtualNode {
+          tagName: 'EM',
+          properties: { key: undefined },
+          children: [ VirtualText { text: 'emphasis' } ],
+          key: 'h-3',
+          namespace: null,
+          count: 1,
+          hasWidgets: false,
+          hasThunks: false,
+          hooks: undefined,
+          descendantHooks: false
+        },
+        VirtualText { text: ', ' },
+        VirtualNode {
+          tagName: 'STRONG',
+          properties: { key: undefined },
+          children: [ VirtualText { text: 'importance' } ],
+          key: 'h-4',
+          namespace: null,
+          count: 1,
+          hasWidgets: false,
+          hasThunks: false,
+          hooks: undefined,
+          descendantHooks: false
+        },
+        VirtualText { text: ', and ' },
+        VirtualNode {
+          tagName: 'CODE',
+          properties: { key: undefined },
+          children: [ VirtualText { text: 'code' } ],
+          key: 'h-5',
+          namespace: null,
+          count: 1,
+          hasWidgets: false,
+          hasThunks: false,
+          hooks: undefined,
+          descendantHooks: false
+        },
+        VirtualText { text: '.' }
+      ],
+      key: 'h-2',
+      namespace: null,
+      count: 10,
+      hasWidgets: false,
+      hasThunks: false,
+      hooks: undefined,
+      descendantHooks: false
+    }
+  ],
   key: 'h-1',
   namespace: null,
   count: 11,
   hasWidgets: false,
   hasThunks: false,
   hooks: undefined,
-  descendantHooks: false }
+  descendantHooks: false
+}
 ```
 
 ## API
 
 ### `remark().use(vdom[, options])`
 
-Compiles markdown to [Virtual DOM][vdom].
+Compile Markdown to [Virtual DOM][vdom].
 
 ##### `options`
 
@@ -118,15 +125,15 @@ Compiles markdown to [Virtual DOM][vdom].
 
 How to sanitise the output (`Object` or `boolean`, default: `null`).
 
-Sanitation is done by [`hast-util-sanitize`][sanitize], except when
-`false` is given.  If an object is passed in, it’s given as a schema
-to `sanitize`.  By default, input is sanitised according to [GitHub’s
-sanitation rules][github].
+Sanitation is done by [`hast-util-sanitize`][sanitize], except when `false` is
+given.
+If an object is passed in, it’s given as a schema to `sanitize`.
+By default, input is sanitised according to [GitHub’s sanitation rules][github].
 
 Embedded HTML is **always** stripped.
 
-For example, by default `className`s are stripped.  To keep them in,
-use something like:
+For example, by default `className`s are stripped.
+To keep them in, use something like:
 
 ```js
 var merge = require('deepmerge')
@@ -149,16 +156,16 @@ Hyperscript to use (`Function`, default: `require('virtual-dom/h')`).
 
 ###### `options.components`
 
-Map of tag-names to custom components (`Object.<Function>`, optional).
+Map of tag names to custom components (`Object.<Function>`, optional).
 That component is invoked with `tagName`, `props`, and `children`.
-It can return any VDOM compatible value (`VNode`, `VText`, `Widget`,
-etc.).  For example:
+It can return any VDOM compatible value (such as `VNode`, `VText`, `Widget`).
+For example:
 
 ```js
 var components = {code: code}
 
 function code(tagName, props, children) {
-  /* Ensure a default programming language is set. */
+  // Ensure a default programming language is set.
   if (!props.className) {
     props.className = 'language-js'
   }
@@ -186,11 +193,13 @@ Integrates with the same tools as [`remark-html`][remark-html].
 
 ## Contribute
 
-See [`contributing.md` in `remarkjs/remark`][contributing] for ways to get
-started.
+See [`contributing.md`][contributing] in [`remarkjs/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -198,7 +207,7 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/remarkjs/remark-vdom.svg
+[build-badge]: https://img.shields.io/travis/remarkjs/remark-vdom/master.svg
 
 [build]: https://travis-ci.org/remarkjs/remark-vdom
 
@@ -210,9 +219,9 @@ repository, organisation, or community you agree to abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/remark-vdom
 
-[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+[size-badge]: https://img.shields.io/bundlephobia/minzip/remark-vdom.svg
 
-[chat]: https://spectrum.chat/unified/remark
+[size]: https://bundlephobia.com/result?p=remark-vdom
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
@@ -220,26 +229,34 @@ repository, organisation, or community you agree to abide by its terms.
 
 [collective]: https://opencollective.com/unified
 
+[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+
+[chat]: https://spectrum.chat/unified/remark
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[health]: https://github.com/remarkjs/.github
+
+[contributing]: https://github.com/remarkjs/.github/blob/master/contributing.md
+
+[support]: https://github.com/remarkjs/.github/blob/master/support.md
+
+[coc]: https://github.com/remarkjs/.github/blob/master/code-of-conduct.md
+
 [license]: license
 
 [author]: https://wooorm.com
 
-[npm]: https://docs.npmjs.com/cli/install
-
 [remark]: https://github.com/remarkjs/remark
 
-[vdom]: https://github.com/Matt-Esch/virtual-dom
-
-[vnode-key]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
-
 [remark-html]: https://github.com/remarkjs/remark-html
-
-[hint]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
 
 [sanitize]: https://github.com/syntax-tree/hast-util-sanitize
 
 [github]: https://github.com/syntax-tree/hast-util-sanitize#schema
 
-[contributing]: https://github.com/remarkjs/remark/blob/master/contributing.md
+[vdom]: https://github.com/Matt-Esch/virtual-dom
 
-[coc]: https://github.com/remarkjs/remark/blob/master/code-of-conduct.md
+[vnode-key]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
+
+[hint]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
