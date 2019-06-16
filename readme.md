@@ -174,9 +174,9 @@ Integrates with the same tools as [`remark-html`][remark-html].
 ## Related
 
 *   [`remark-rehype`](https://github.com/remarkjs/remark-rehype)
-    — Properly transform to an HTML virtual DOM (HAST)
+    — Properly transform to an HTML virtual DOM (hast)
 *   [`rehype-react`](https://github.com/rhysd/rehype-react)
-    — Transform HAST to React
+    — Transform hast to React
 *   [`remark-react`](https://github.com/mapbox/remark-react)
     — Compile markdown to React
 *   [`remark-man`](https://github.com/remarkjs/remark-man)

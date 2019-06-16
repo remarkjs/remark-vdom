@@ -1,6 +1,6 @@
 'use strict'
 
-var toHAST = require('mdast-util-to-hast')
+var toHast = require('mdast-util-to-hast')
 var sanitize = require('hast-util-sanitize')
 var toH = require('hast-to-hyperscript')
 var hyperscript = require('virtual-dom/h')
@@ -22,7 +22,7 @@ function plugin(options) {
 
   // Compile mdast to vdom.
   function compiler(node) {
-    var hast = div(toHAST(node).children)
+    var hast = div(toHast(node).children)
 
     if (clean) {
       hast = sanitize(hast, schema)
@@ -43,7 +43,7 @@ function plugin(options) {
     return fn(name, props, children)
   }
 
-  // Wrap `children` in a HAST div.
+  // Wrap `children` in a hast div.
   function div(children) {
     return {
       type: 'element',
