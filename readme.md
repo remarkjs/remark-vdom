@@ -178,6 +178,12 @@ function code(tagName, props, children) {
 
 Integrates with the same tools as [`remark-html`][remark-html].
 
+## Security
+
+Use of `remark-vdom` is *safe* by default, but changing the `sanitize` option
+can open you up to a [cross-site scripting (XSS)][xss] attack if the tree is
+unsafe.
+
 ## Related
 
 *   [`remark-rehype`](https://github.com/remarkjs/remark-rehype)
@@ -260,3 +266,5 @@ abide by its terms.
 [vnode-key]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
 
 [hint]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
+
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
