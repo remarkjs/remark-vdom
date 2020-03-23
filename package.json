@@ -34,7 +34,7 @@
   "dependencies": {
     "hast-to-hyperscript": "^8.0.0",
     "hast-util-sanitize": "^2.0.0",
-    "mdast-util-to-hast": "^6.0.0",
+    "mdast-util-to-hast": "^8.0.0",
     "virtual-dom": "^2.1.1"
   },
   "devDependencies": {
