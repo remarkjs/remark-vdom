@@ -123,12 +123,12 @@ Compile Markdown to [Virtual DOM][vdom].
 
 ###### `options.sanitize`
 
-How to sanitise the output (`Object` or `boolean`, default: `null`).
+How to sanitize the output (`Object` or `boolean`, default: `null`).
 
 Sanitation is done by [`hast-util-sanitize`][sanitize], except when `false` is
 given.
 If an object is passed in, it’s given as a schema to `sanitize`.
-By default, input is sanitised according to [GitHub’s sanitation rules][github].
+By default, input is sanitized according to [GitHub’s sanitation rules][github].
 
 Embedded HTML is **always** stripped.
 
@@ -148,7 +148,7 @@ var vtree = remark()
 
 ###### `options.prefix`
 
-Optimisation [hint][] (`string`, default: `h-`).
+Optimization [hint][] (`string`, default: `h-`).
 
 ###### `options.h`
 
@@ -203,8 +203,8 @@ See [`contributing.md`][contributing] in [`remarkjs/.github`][health] for ways
 to get started.
 See [`support.md`][support] for ways to get help.
 
-This project has a [Code of Conduct][coc].
-By interacting with this repository, organisation, or community you agree to
+This project has a [code of conduct][coc].
+By interacting with this repository, organization, or community you agree to
 abide by its terms.
 
 ## License
@@ -235,7 +235,7 @@ abide by its terms.
 
 [collective]: https://opencollective.com/unified
 
-[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+[chat-badge]: https://img.shields.io/badge/chat-spectrum-7b16ff.svg
 
 [chat]: https://spectrum.chat/unified/remark
 
