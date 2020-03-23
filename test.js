@@ -6,13 +6,9 @@ var h = require('virtual-dom/h')
 var vdom2html = require('vdom-to-html')
 var vdom = require('.')
 
-test('remark-vdom', function(t) {
+test('remark-vdom', function (t) {
   function check(fixture, options) {
-    return vdom2html(
-      remark()
-        .use(vdom, options)
-        .processSync(fixture).contents
-    )
+    return vdom2html(remark().use(vdom, options).processSync(fixture).contents)
   }
 
   t.equal(
@@ -29,7 +25,7 @@ test('remark-vdom', function(t) {
 
   t.equal(
     check('_Emphasis_!', {
-      h: function(name, props, children) {
+      h: function (name, props, children) {
         return h(name === 'EM' ? 'I' : name, props, children)
       }
     }),
@@ -56,7 +52,7 @@ test('remark-vdom', function(t) {
   t.equal(
     check('_Emphasis_!', {
       components: {
-        em: function(name, props, children) {
+        em: function (name, props, children) {
           return children
         }
       }
@@ -65,9 +61,8 @@ test('remark-vdom', function(t) {
     '`components`'
   )
 
-  var node = remark()
-    .use(vdom, {prefix: 'f-'})
-    .processSync('_Emphasis_!').contents
+  var node = remark().use(vdom, {prefix: 'f-'}).processSync('_Emphasis_!')
+    .contents
 
   t.equal(node.key, 'f-1', '`prefix`')
 
