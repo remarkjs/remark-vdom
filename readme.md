@@ -38,7 +38,7 @@ unified()
   .use(vdom)
   .process('Some _emphasis_, **importance**, and `code`.', function(err, file) {
     if (err) throw err
-    console.dir(file.contents, {depth: null})
+    console.dir(file.result, {depth: null})
   })
 ```
 
@@ -118,6 +118,9 @@ VirtualNode {
 ### `remark().use(vdom[, options])`
 
 Compile Markdown to [Virtual DOM][vdom].
+
+> ℹ️ In [`unified@9.0.0`][unified-9], the result of `.process` changed from
+> ~~`file.contents`~~ to `file.result`.
 
 ##### `options`
 
@@ -268,3 +271,5 @@ abide by its terms.
 [hint]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#key
 
 [xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[unified-9]: https://github.com/unifiedjs/unified/releases/tag/9.0.0
