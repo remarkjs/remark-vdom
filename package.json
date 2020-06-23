@@ -43,14 +43,14 @@
     "prettier": "^2.0.0",
     "remark": "^12.0.0",
     "remark-cli": "^8.0.0",
-    "remark-preset-wooorm": "^6.0.0",
-    "tape": "^4.0.0",
+    "remark-preset-wooorm": "^7.0.0",
+    "tape": "^5.0.0",
     "tinyify": "^2.0.0",
     "vdom-to-html": "^2.0.0",
-    "xo": "^0.28.0"
+    "xo": "^0.32.0"
   },
   "scripts": {
-    "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix",
+    "format": "remark . -qfo && prettier . --write && xo --fix",
     "build-bundle": "browserify . -s remarkVdom > remark-vdom.js",
     "build-mangle": "browserify . -s remarkVdom -p tinyify > remark-vdom.min.js",
     "build": "npm run build-bundle && npm run build-mangle",

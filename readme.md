@@ -12,7 +12,7 @@
 
 *   [x] Inherently safe and sanitized: there is no way to pass raw HTML through
 *   [x] Supports footnotes, todo lists
-*   [x] Support VNode [keys][vnode-key]
+*   [x] Support VNode [keys][key]
 *   [x] Custom components overwriting default elements (`MyLink` instead of
     `<a>`)
 
@@ -151,7 +151,7 @@ var vtree = remark()
 
 ###### `options.prefix`
 
-Optimization [hint][] (`string`, default: `h-`).
+Optimization [hint][key] (`string`, default: `h-`).
 
 ###### `options.h`
 
@@ -266,9 +266,7 @@ abide by its terms.
 
 [vdom]: https://github.com/Matt-Esch/virtual-dom
 
-[vnode-key]: https://github.com/Matt-Esch/virtual-dom/tree/HEAD/virtual-hyperscript#key
-
-[hint]: https://github.com/Matt-Esch/virtual-dom/tree/HEAD/virtual-hyperscript#key
+[key]: https://github.com/Matt-Esch/virtual-dom/tree/HEAD/virtual-hyperscript#key
 
 [xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
 
