@@ -1,10 +1,20 @@
+/**
+ * @typedef {import('./index.js').Options} Options
+ * @typedef {import('virtual-dom').VNode} VNode
+ */
+
 import test from 'tape'
 import {remark} from 'remark'
-import h from 'virtual-dom/h.js'
+import {h} from 'virtual-dom'
+// @ts-expect-error: untyped.
 import vdom2html from 'vdom-to-html'
 import vdom from './index.js'
 
 test('remark-vdom', (t) => {
+  /**
+   * @param {string} [fixture]
+   * @param {Options} [options]
+   */
   function check(fixture, options) {
     return vdom2html(remark().use(vdom, options).processSync(fixture).result)
   }
@@ -23,6 +33,7 @@ test('remark-vdom', (t) => {
 
   t.equal(
     check('_Emphasis_!', {
+      // @ts-expect-error: TS tripping up, it’s fine.
       h(name, props, children) {
         return h(name === 'EM' ? 'I' : name, props, children)
       }
@@ -50,7 +61,7 @@ test('remark-vdom', (t) => {
   t.equal(
     check('_Emphasis_!', {
       components: {
-        em(name, props, children) {
+        em(_, _1, children) {
           return children
         }
       }
@@ -59,9 +70,9 @@ test('remark-vdom', (t) => {
     '`components`'
   )
 
-  const node = remark()
-    .use(vdom, {prefix: 'f-'})
-    .processSync('_Emphasis_!').result
+  const node = /** @type {VNode} */ (
+    remark().use(vdom, {prefix: 'f-'}).processSync('_Emphasis_!').result
+  )
 
   t.equal(node.key, 'f-1', '`prefix`')
 
