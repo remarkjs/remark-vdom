@@ -4,7 +4,7 @@ import h from 'virtual-dom/h.js'
 import vdom2html from 'vdom-to-html'
 import vdom from './index.js'
 
-test('remark-vdom', function (t) {
+test('remark-vdom', (t) => {
   function check(fixture, options) {
     return vdom2html(remark().use(vdom, options).processSync(fixture).result)
   }
@@ -59,7 +59,7 @@ test('remark-vdom', function (t) {
     '`components`'
   )
 
-  var node = remark()
+  const node = remark()
     .use(vdom, {prefix: 'f-'})
     .processSync('_Emphasis_!').result
 

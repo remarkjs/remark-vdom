@@ -3,22 +3,22 @@ import {sanitize} from 'hast-util-sanitize'
 import {toH} from 'hast-to-hyperscript'
 import hyperscript from 'virtual-dom/h.js'
 
-var own = {}.hasOwnProperty
+const own = {}.hasOwnProperty
 
 // Attach a VDOM compiler.
 export default function remarkVdom(options) {
-  var settings = options || {}
-  var info = settings.sanitize
-  var clean = info !== false
-  var schema = info && typeof info === 'object' ? info : null
-  var components = settings.components || {}
-  var h = settings.h || hyperscript
+  const settings = options || {}
+  const info = settings.sanitize
+  const clean = info !== false
+  const schema = info && typeof info === 'object' ? info : null
+  const components = settings.components || {}
+  const h = settings.h || hyperscript
 
   this.Compiler = compiler
 
   // Compile mdast to vdom.
   function compiler(node) {
-    var hast = div(toHast(node).children)
+    let hast = div(toHast(node).children)
 
     if (clean) {
       hast = sanitize(hast, schema)
@@ -34,8 +34,8 @@ export default function remarkVdom(options) {
 
   // Wrapper around `h` to pass components in.
   function w(name, props, children) {
-    var id = name.toLowerCase()
-    var fn = own.call(components, id) ? components[id] : h
+    const id = name.toLowerCase()
+    const fn = own.call(components, id) ? components[id] : h
     return fn(name, props, children)
   }
 
