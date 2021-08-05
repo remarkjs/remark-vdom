@@ -1,5 +1,5 @@
 import test from 'tape'
-import remark from 'remark'
+import {remark} from 'remark'
 import h from 'virtual-dom/h.js'
 import vdom2html from 'vdom-to-html'
 import vdom from './index.js'
