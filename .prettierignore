@@ -1,5 +1,2 @@
 coverage/
-remark-vdom.js
-remark-vdom.min.js
-*.json
 *.md

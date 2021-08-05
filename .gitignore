@@ -3,6 +3,4 @@
 .nyc_output/
 coverage/
 node_modules/
-remark-vdom.js
-remark-vdom.min.js
 yarn.lock
