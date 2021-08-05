@@ -1,6 +1,6 @@
 {
   "name": "remark-vdom",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "description": "remark plugin to compile Markdown to VDOM",
   "license": "MIT",
   "keywords": [
