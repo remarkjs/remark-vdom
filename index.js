@@ -1,16 +1,12 @@
-'use strict'
-
-var toHast = require('mdast-util-to-hast')
-var sanitize = require('hast-util-sanitize')
-var toH = require('hast-to-hyperscript')
-var hyperscript = require('virtual-dom/h')
-
-module.exports = plugin
+import toHast from 'mdast-util-to-hast'
+import sanitize from 'hast-util-sanitize'
+import toH from 'hast-to-hyperscript'
+import hyperscript from 'virtual-dom/h.js'
 
 var own = {}.hasOwnProperty
 
 // Attach a VDOM compiler.
-function plugin(options) {
+export default function remarkVdom(options) {
   var settings = options || {}
   var info = settings.sanitize
   var clean = info !== false
@@ -49,7 +45,7 @@ function plugin(options) {
       type: 'element',
       tagName: 'div',
       properties: {},
-      children: children
+      children
     }
   }
 }

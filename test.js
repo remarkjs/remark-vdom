@@ -1,10 +1,8 @@
-'use strict'
-
-var test = require('tape')
-var remark = require('remark')
-var h = require('virtual-dom/h')
-var vdom2html = require('vdom-to-html')
-var vdom = require('.')
+import test from 'tape'
+import remark from 'remark'
+import h from 'virtual-dom/h.js'
+import vdom2html from 'vdom-to-html'
+import vdom from './index.js'
 
 test('remark-vdom', function (t) {
   function check(fixture, options) {
@@ -25,7 +23,7 @@ test('remark-vdom', function (t) {
 
   t.equal(
     check('_Emphasis_!', {
-      h: function (name, props, children) {
+      h(name, props, children) {
         return h(name === 'EM' ? 'I' : name, props, children)
       }
     }),
@@ -52,7 +50,7 @@ test('remark-vdom', function (t) {
   t.equal(
     check('_Emphasis_!', {
       components: {
-        em: function (name, props, children) {
+        em(name, props, children) {
           return children
         }
       }
@@ -61,8 +59,9 @@ test('remark-vdom', function (t) {
     '`components`'
   )
 
-  var node = remark().use(vdom, {prefix: 'f-'}).processSync('_Emphasis_!')
-    .result
+  var node = remark()
+    .use(vdom, {prefix: 'f-'})
+    .processSync('_Emphasis_!').result
 
   t.equal(node.key, 'f-1', '`prefix`')
 
