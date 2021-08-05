@@ -1,6 +1,6 @@
-import toHast from 'mdast-util-to-hast'
-import sanitize from 'hast-util-sanitize'
-import toH from 'hast-to-hyperscript'
+import {toHast} from 'mdast-util-to-hast'
+import {sanitize} from 'hast-util-sanitize'
+import {toH} from 'hast-to-hyperscript'
 import hyperscript from 'virtual-dom/h.js'
 
 var own = {}.hasOwnProperty

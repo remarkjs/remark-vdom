@@ -35,9 +35,9 @@
     "index.js"
   ],
   "dependencies": {
-    "hast-to-hyperscript": "^9.0.0",
-    "hast-util-sanitize": "^3.0.0",
-    "mdast-util-to-hast": "^10.0.0",
+    "hast-to-hyperscript": "^10.0.0",
+    "hast-util-sanitize": "^4.0.0",
+    "mdast-util-to-hast": "^11.0.0",
     "virtual-dom": "^2.0.0"
   },
   "devDependencies": {
