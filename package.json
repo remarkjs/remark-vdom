@@ -1,7 +1,7 @@
 {
   "name": "remark-vdom",
   "version": "11.0.0",
-  "description": "remark plugin to compile Markdown to VDOM",
+  "description": "Legacy remark plugin to compile markdown to VDOM — please use something like React instead",
   "license": "MIT",
   "keywords": [
     "unified",
